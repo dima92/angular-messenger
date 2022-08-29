@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BaseConversationModel, SelectedConversationModel} from '../models/conversation.model';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class ChatService {
@@ -252,7 +253,7 @@ export class ChatService {
     },
   ];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getConversationList() {

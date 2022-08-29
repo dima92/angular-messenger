@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -7,12 +10,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn = false;
+  isLoggedIn$ = this.userService.getUserObservable().pipe(
+    map(user => !!user)
+  );
 
-  constructor() {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.userService.clearData();
+    this.router.navigateByUrl('/auth/sign-in');
   }
 
 }
