@@ -10,7 +10,7 @@ import {map} from "rxjs";
 })
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn$ = this.userService.getUserObservable().pipe(
+  isLoggedIn$ = this.userService.getCurrentUser().pipe(
     map(user => !!user)
   );
 

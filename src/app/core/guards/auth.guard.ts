@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   handle() {
-    return this.userService.getUserObservable().pipe(
+    return this.userService.getCurrentUser().pipe(
       take(1),
       map(user => user !== null ? true : this.router.parseUrl('/auth/sign-in'))
     );

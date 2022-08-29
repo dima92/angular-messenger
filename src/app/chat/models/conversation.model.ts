@@ -2,9 +2,9 @@ import {UserModel} from '../../core/models/user.model';
 import {ConversationMessageModel} from "./message.model";
 
 export interface BaseConversationModel {
-  id: string;
   participants: UserModel[];
   last_message: ConversationMessageModel;
+  id?: string;
 }
 
 export interface SelectedConversationModel extends BaseConversationModel {

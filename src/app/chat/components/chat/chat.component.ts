@@ -10,7 +10,7 @@ import {UserModel} from '../../../core/models/user.model';
 })
 export class ChatComponent implements OnInit {
   @Input() selectedConversation: SelectedConversationModel | undefined;
-  @Input() currentUser: UserModel | undefined;
+  @Input() currentUser: UserModel | null = null;
   @Output() postMessage = new EventEmitter<MessageSendRequestModel>();
 
   newMessage: string = '';
@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit {
   onPostMessage() {
     this.postMessage.emit({
       message: this.newMessage,
-      recipient: this.selectedConversation?.participants[1].id || ''
+      recipient: this.selectedConversation?.participants[0].id || ''
     });
     this.newMessage = '';
   }
