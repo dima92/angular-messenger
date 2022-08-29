@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "./core/services/user.service";
 import {finalize} from "rxjs";
+import {Store} from '@ngrx/store';
+
+import * as UserAction from './core/store/actions/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +13,16 @@ import {finalize} from "rxjs";
 export class AppComponent implements OnInit {
   isUserFetched = false;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private store: Store) {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(UserAction.FetchUser());
+
     this.userService.fetchUser().pipe(
       finalize(() => {
         this.isUserFetched = true;
-      })
+      }),
     ).subscribe();
   }
 }
