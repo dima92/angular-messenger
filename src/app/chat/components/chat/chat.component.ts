@@ -2,7 +2,6 @@ import {AfterViewChecked, Component, ElementRef, EventEmitter, Input, Output, Vi
 import {SelectedConversationModel} from '../../models/conversation.model';
 import {ConversationMessageModel, MessageSendRequestModel} from '../../models/message.model';
 import {UserModel} from '../../../core/models/user.model';
-import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-chat',
@@ -14,13 +13,9 @@ export class ChatComponent implements AfterViewChecked {
   @Input() currentUser: UserModel | null = null;
   @Output() postMessage = new EventEmitter<MessageSendRequestModel>();
 
-  @ViewChild('lastMessageAnchor') lastMessageAnchor!: ElementRef;
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
   newMessage: string = '';
-
-  constructor(private scroller: ViewportScroller) {
-  }
 
   ngAfterViewChecked() {
     this.scrollContainer.nativeElement.scrollTo(0, this.scrollContainer.nativeElement.scrollHeight);
