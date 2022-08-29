@@ -61,7 +61,7 @@ export const conversationListMock: BaseConversationModel[] = [
       },
       {
         username: 'Lisa Guerrero',
-        last_seen: '2022-02-22T21:44:48.002Z',
+        last_seen: 'online',
         id: '62154d88353e6c41ea0344322',
       },
     ],
